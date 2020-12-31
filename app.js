@@ -12,7 +12,7 @@ app.use(cookieParser());
 //views
 app.set('view engine','ejs');
 //db
-const dbURI='mongodb+srv://Nikitha:1234@clusteritw.qpyuy.mongodb.net/Usersdb?retryWrites=true&w=majority';
+const dbURI='mongodb+srv://<username>:<password>@<cluster name>.qpyuy.mongodb.net/<dbname>?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
   .then((result)=> app.listen(3000))
   .catch((err)=>console.log('dberror vro:',err));
