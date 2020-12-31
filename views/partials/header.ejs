@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h1><a href='/'>home</a></h1>
+        <ul>
+            <!-- if user exits - logout || else - login and signup -->
+            <% if (user) { %>
+            <li> heyy <%= user.email %></li>
+            <li><a href="/logout">Logout</a></li>
+            <% } else { %>
+            <li><a href="/login">Login plch</a></li>
+            <li><a href="/signup" class="btn">Signup plch</a></li>
+            <% } %>
+        </ul>
+    </nav>
