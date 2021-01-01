@@ -19,7 +19,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useC
 //routes
 app.get('*',checkUser);
 app.get('/',(req,res) => {
-    console.log("sucess nikkiiii");
+    console.log("sucess nikkiiii :)");
     res.render('home');
 });
 app.get('/inside',requireAuth,(req,res)=>{
