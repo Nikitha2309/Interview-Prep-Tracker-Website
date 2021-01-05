@@ -3,6 +3,7 @@ const express = require('express');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser=require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const secrets=require('./secret');
 
 const app= express();
 //middleware
@@ -12,7 +13,7 @@ app.use(cookieParser());
 //views
 app.set('view engine','ejs');
 //db
-const dbURI='mongodb+srv://<username>:<password>@<cluster name>.qpyuy.mongodb.net/<dbname>?retryWrites=true&w=majority';
+const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
   .then((result)=> app.listen(3000))
   .catch((err)=>console.log('dberror vro:',err));
