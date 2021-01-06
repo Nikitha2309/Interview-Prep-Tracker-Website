@@ -18,10 +18,7 @@ const run = async () => {
   await mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
        .then((result)=> console.log('mongoose connected'))
        .catch((err)=>console.log('dberror vro:',err));
-  const AdminBroOptions = {
-    resources: [User],
-  }
-  const admin = new AdminBro(AdminBroOptions);
+  const admin = new AdminBro(options);
   const router = buildAdminRouter(admin);
   app.use(admin.options.rootPath, router);
   app.listen(3000);
