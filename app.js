@@ -44,8 +44,8 @@ app.get('/',(req,res) => {
     console.log("sucess nikkiiii :) :)");
     res.render('home');
 });
-app.get('/arrays',requireAuth,(req,res)=>{
-  res.render('arrays');
+app.get('/topics',requireAuth,(req,res)=>{
+  res.render('topics');
 });
 app.use(authRoutes); 
 

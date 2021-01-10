@@ -8,5 +8,5 @@ const topicSchema =new mongoose.Schema({
     }
 });
 
-const Topic = mongoose.model('topic',topicSchema);
+const Topic = mongoose.model('Topic',topicSchema);
 module.exports=Topic;
