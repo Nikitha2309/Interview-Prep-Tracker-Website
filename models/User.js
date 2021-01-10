@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
 const { isEmail }=require('validator');
 const bcrypt=require('bcrypt');
-//import { isEmail } from 'validator';
+
 const userSchema = new mongoose.Schema({
         email :  {
             type:String,
             required:[true,'please enter an email'],
-            unique:true,
+            unique:[true,'Email is already registered'],
             lowercase:true,
             validate:[isEmail,'please enter a valid email ,idiot']
+        },
+        username: {
+            type:  String,
+            unique: [true, 'Username already exists'],
+            minlength: [4, ' Username too small'],
+            required: [ true , 'Enter a username']
         },
         password : {
            type:String,
@@ -16,13 +22,14 @@ const userSchema = new mongoose.Schema({
            minlength:[6,'minimum password length is 6 vro'],
         }
    });
+
 //first function fires then doc saves
 userSchema.pre('save',async function(next){
-       //console.log('user about to be created and saved',this);
        const salt=await bcrypt.genSalt();
        this.password=await bcrypt.hash(this.password,salt);
        next();
    });
+   
 //static method to login user
 userSchema.statics.login = async function(email,password){
     const user = await this.findOne({email});

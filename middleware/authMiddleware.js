@@ -5,16 +5,16 @@ const requireAuth=(req,res,next)=>
 {
     //token corresponding to req
     const token = req.cookies.jwt;
+
     //verify existance
     if(token)
     {
-        jwt.verify(token,'net ninja secret',(err,decodedToken)=>{
+        jwt.verify(token,'hakuna matata',(err,decodedToken)=>{
             if(err){
                 console.log(err.message);
-                //redirects to home incase of error
+                //redirects to login page incase of error
                 res.redirect('/login');
-            }
-            else{
+            }else{
                 console.log(decodedToken);
                 next();
             }
@@ -31,7 +31,7 @@ const checkUser =(req,res,next)=>{
     const token =req.cookies.jwt;
     //if it exists
     if(token){
-        jwt.verify(token,'net ninja secret',async(err,decodedToken) => {
+        jwt.verify(token,'hakuna matata',async(err,decodedToken) => {
             //incase of a error
             if(err){
                   res.locals.user=null;
