@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const authRoutes = require('./routes/authRoutes');
 const cookieParser=require('cookie-parser');
+const {default : AdminBro} = require('admin-bro');
+
+const authRoutes = require('./routes/authRoutes');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const secrets=require('./secret');
 const buildAdminRouter = require('./admin/admin.router');
 const options = require('./admin/admin.options');
-const {default : AdminBro} = require('admin-bro');
 const User = require('./models/User');
+const Topic=require('./models/Topic');
+const Question=require('./models/Question');
 
 const app= express();
+
 //db
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
 
@@ -36,17 +40,15 @@ app.set('view engine','ejs');
 
 //routes
 app.get('*',checkUser);
-
 app.get('/',(req,res) => {
     console.log("sucess nikkiiii :) :)");
     res.render('home');
 });
-
-app.get('/inside',requireAuth,(req,res)=>{
-  res.render('inside');
+app.get('/arrays',requireAuth,(req,res)=>{
+  res.render('arrays');
 });
-
 app.use(authRoutes); 
+
 //app.get
 // app.get('/set-cookies',(req,res)=>{
 //   res.cookie('newUser',false);

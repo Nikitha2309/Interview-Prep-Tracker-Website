@@ -1,0 +1,27 @@
+.login{
+    font-weight: bold;
+    position: absolute;
+    right:40px;
+    top:15px;
+}
+.signup{
+    font-weight: bold;
+    position: absolute;
+    right: 150px;
+    top: 15px;
+}
+.navbar-class{
+    background-color:bisque;
+    position:relative;
+}
+.form{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+}
