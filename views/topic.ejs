@@ -1,9 +1,9 @@
 <%- include('partials/header'); -%>
 
-<h1>Wecome to topic</h1>
+<h1>Wecome to <%- topic %></h1>
 <ul>
-    <% topics.forEach(function(topic) { %>
-    <li><%- topic.name %></li>
+    <% questions.forEach(function(question) { %>
+    <li><a href=<%- question.link %> ><%- question.name %></a></li>
     <% }); %>
 </ul>
 

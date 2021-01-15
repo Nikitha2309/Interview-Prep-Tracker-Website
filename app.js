@@ -44,14 +44,32 @@ const appsetup = (database) =>{
 
   //routes
   app.get('*',checkUser);
+
   app.get('/',(req,res) => {
       console.log("sucess nikkiiii :) :)");
       res.render('home');
   });
+
   app.get('/topics',requireAuth,(req,res)=>{
     database.db.collection('topics').find({}).toArray().then((topics)=>{
-      console.log(topics);
       res.render('topics',{ topics : topics});});
   });
+
+  app.get('/:id',requireAuth,(req,res)=>{
+    //to convert arrays -> Arrays
+    let topic= req.params.id;
+    topic=topic.charAt(0).toUpperCase() + topic.slice(1);
+    //find topic  in topics collection
+    database.db.collection('topics').findOne({ name : topic.toString()})
+    //then get all questions linked to it
+    .then((topic)=>{
+         let questions= database.db.collection('questions').find({ topic : topic._id}).toArray();
+         return questions;    })
+    //finally render the page
+    .then((questions)=>{
+         res.render('topic',{ topic:topic , questions : questions});})
+    .catch((err)=> console.log('error2 ',err));
+  });
+
   app.use(authRoutes); 
 } 
