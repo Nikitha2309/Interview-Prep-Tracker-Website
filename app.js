@@ -12,56 +12,64 @@ const User = require('./models/User');
 const Topic=require('./models/Topic');
 const Question=require('./models/Question');
 
-const app= express();
-
-//db
+//database URI
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
+//mongoose connect
+mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
+.then(() => {                           
+      console.log('mongoose connected');
+      var database = mongoose.connection;
+      appsetup(database);
+  })
+.catch(err => console.log('dberror vro:',err));
 
+//after mongoose connection is setup and database is extracted , appsetup will run
+const appsetup = (database) =>{
+  const app=express();
 
-const run = async () => {
-  await mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
-       .then((result)=> console.log('mongoose connected'))
-       .catch((err)=>console.log('dberror vro:',err));
+  //adminbro 
   const admin = new AdminBro(options);
   const router = buildAdminRouter(admin);
   app.use(admin.options.rootPath, router);
+
   app.listen(3000);
-}
 
-run();
+  //middleware
+  app.use(express.static('public'));
+  app.use(express.json());
+  app.use(cookieParser());
 
-//middleware
-app.use(express.static('public'));
-app.use(express.json());
-app.use(cookieParser());
+  //views
+  app.set('view engine','ejs');
 
-//views
-app.set('view engine','ejs');
+  //routes
+  app.get('*',checkUser);
 
-//routes
-app.get('*',checkUser);
-app.get('/',(req,res) => {
-    console.log("sucess nikkiiii :) :)");
-    res.render('home');
-});
-app.get('/topics',requireAuth,(req,res)=>{
-  res.render('topics');
-});
-app.use(authRoutes); 
+  app.get('/',(req,res) => {
+      console.log("sucess nikkiiii :) :)");
+      res.render('home');
+  });
 
-//app.get
-// app.get('/set-cookies',(req,res)=>{
-//   res.cookie('newUser',false);
-//   res.cookie('olduser',true,{maxAge:1000*60*60*24});
-//   res.send("<h2>yayy you got a cookie</h2>");
-// });
+  app.get('/topics',requireAuth,(req,res)=>{
+    database.db.collection('topics').find({}).toArray().then((topics)=>{
+      res.render('topics',{ topics : topics});});
+  });
 
-// app.get('/read-cookies',(req,res)=>{
-//    const cookies=req.cookies;
-//    console.log(cookies);
-//    res.json(cookies);
-// })
+  app.get('/:id',requireAuth,(req,res)=>{
+    //to convert arrays -> Arrays
+    let topic= req.params.id;
+    topic=topic.charAt(0).toUpperCase() + topic.slice(1);
+    //find topic  in topics collection
+    database.db.collection('topics').findOne({ name : topic.toString()})
+    //then get all questions linked to it
+    .then((topic)=>{
+         let questions= database.db.collection('questions').find({ topic : topic._id}).toArray();
+         return questions;    })
+    //finally render the page
+    .then((questions)=>{
+         res.render('topic',{ topic:topic , questions : questions});})
+    .catch((err)=> console.log('error2 ',err));
+  });
 
-
-
-
+  app.use(authRoutes); 
+} 

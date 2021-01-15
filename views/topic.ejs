@@ -1,0 +1,10 @@
+<%- include('partials/header'); -%>
+
+<h1>Wecome to <%- topic %></h1>
+<ul>
+    <% questions.forEach(function(question) { %>
+    <li><a href=<%- question.link %> ><%- question.name %></a></li>
+    <% }); %>
+</ul>
+
+<%- include('partials/footer'); -%> 
