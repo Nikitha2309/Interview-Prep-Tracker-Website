@@ -50,6 +50,8 @@ const appsetup = (database) =>{
       res.render('home');
   });
 
+  app.use(authRoutes); 
+
   app.get('/topics',requireAuth,(req,res)=>{
     database.db.collection('topics').find({}).toArray().then((topics)=>{
       res.render('topics',{ topics : topics});});
@@ -70,6 +72,4 @@ const appsetup = (database) =>{
          res.render('topic',{ topic:topic , questions : questions});})
     .catch((err)=> console.log('error2 ',err));
   });
-
-  app.use(authRoutes); 
 } 
