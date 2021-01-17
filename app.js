@@ -52,14 +52,19 @@ const appsetup = (database) =>{
 
   app.use(authRoutes); 
 
+  app.get('/topics/style.css',(req,res)=>{
+    res.redirect('/style.css');
+  });
+  
+
   app.get('/topics',requireAuth,(req,res)=>{
     database.db.collection('topics').find({}).toArray().then((topics)=>{
       res.render('topics',{ topics : topics});});
   });
 
-  app.get('/:id',requireAuth,(req,res)=>{
+  app.get('/topics/:t_name',requireAuth,(req,res)=>{
     //to convert arrays -> Arrays
-    let topic= req.params.id;
+    let topic= req.params.t_name;
     topic=topic.charAt(0).toUpperCase() + topic.slice(1);
     //find topic  in topics collection
     database.db.collection('topics').findOne({ name : topic.toString()})
