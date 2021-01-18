@@ -52,9 +52,6 @@ const appsetup = (database) =>{
 
   app.use(authRoutes); 
 
-  app.get('/topics/style.css',(req,res)=>{
-     res.redirect('/style.css');
-  });
   
 
   app.get('/topics',requireAuth,(req,res)=>{
