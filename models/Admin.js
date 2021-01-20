@@ -56,7 +56,7 @@ const passwordAfterHook =async (response) => {
 const options = {
   properties : {
       password : {
-          isVisible : false,
+          isVisible : true,
       },
      tempPassword : {
           type :'password',
