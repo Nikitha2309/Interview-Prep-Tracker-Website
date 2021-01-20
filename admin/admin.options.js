@@ -4,9 +4,10 @@ AdminBro.registerAdapter(AdminBroMongoose);
 const User =require('../models/User');
 const Topic =require('../models/Topic');
 const Question =require('../models/Question');
+const {adminOptions} = require('../models/Admin');
 
 const options = {
-  resources: [User,Topic,Question],
+  resources: [adminOptions,User,Topic,Question],
  };
 
 module.exports = options;

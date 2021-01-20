@@ -10,7 +10,8 @@ const buildAdminRouter = require('./admin/admin.router');
 const options = require('./admin/admin.options');
 const User = require('./models/User');
 const Topic=require('./models/Topic');
-const Question=require('./models/Question');
+const Question=require('./models/Question'); 
+const {Admin,adminOptions}= require('./models/Admin');
 
 //database URI
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
