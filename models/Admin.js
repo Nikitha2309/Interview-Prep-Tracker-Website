@@ -50,13 +50,13 @@ const passwordAfterHook =async (response) => {
     if (response.record && response.record.errors) {
       response.record.errors.password = response.record.errors.encryptedPassword;
     }
-    return response;
+    return response; 
   };
 
 const options = {
   properties : {
       password : {
-          isVisible : false,
+          isVisible : true,
       },
      tempPassword : {
           type :'password',
