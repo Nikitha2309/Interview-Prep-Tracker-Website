@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="style1.css">
     <style>
       html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";.wrapper{max-width:1140px;padding-left:1rem;padding-right:1rem;margin-left:auto;margin-right:auto}*,*:before,*:after{box-sizing:border-box}a{text-decoration:none;color:#222}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body{font-family:roboto,sans-serif}.sr-only{position:absolute;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}.button{-webkit-appearance:none;-moz-appearance:none;appearance:none;color:#fff;background-color:#2fa0f6;min-width:120px;padding:.5rem 1rem;border-radius:5px;text-align:center}.button svg{display:inline-block;vertical-align:middle;width:24px;height:24px;fill:#fff}.button span{display:none}@media(min-width:600px){.button span{display:initial}}.button--icon{min-width:initial;padding:.5rem}
@@ -159,6 +158,7 @@
         color:white;
     }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="site-header">
@@ -173,7 +173,8 @@
                 menu
               </button>
               <ul class="nav__wrapper">
-                
+                <li class="nav__item ">
+                  
                 <li class="nav__item active">
                   <a href="#">
                     <svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet" class="nav-icon" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -198,10 +199,10 @@
                     <div class='login'> <a href="/logout">Logout</a></div>
                 <% }else{ %>
                     <div class="signup">
-                        <button class='btn btn-default'><a class="text" href="/signup">Sign Up</a></button>
+                        <button class='button btn-default btn'><a class="text" href="/signup">Sign Up</a></button>
                     </div>
                     <div class="login">
-                        <button class='btn btn-default'><a class="text" href="/login">Login</a></h3></button>
+                        <button class='button btn-default btn'><a class="text" href="/login">Login</a></h3></button>
                     </div>
                 <% } %>
               </ul>
@@ -209,4 +210,3 @@
           </div>
         </div>
       </header>
-      <div class="black">

@@ -1,0 +1,58 @@
+
+
+    * {
+        box-sizing: border-box;
+      }
+      
+    .bg{
+      background-image: url('1.jpeg');
+      width: 1280px;
+      height: 800px;
+      margin-left: 110px;
+      margin-right: 30px;
+      padding: 80px;
+      border:  1px;
+      border-radius: 30px;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+   
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 30px;
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {margin: 0 -5px;}
+    
+    
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color:#def7ff;
+      border-radius: 30px; 
+      font-weight: bolder;
+    }
+    .black{
+      background-color: rgb(75, 71, 65);
+    }
