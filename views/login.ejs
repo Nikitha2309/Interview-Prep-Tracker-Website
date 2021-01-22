@@ -21,7 +21,10 @@
     <form action="/login">
         <div class="hand"></div>
         <div class="hand rgt"></div>
-        <h1>Panda Login</h1>
+        <h1 style="color: #ff4081;
+        font-weight: bolder;
+        font-size: 30px;
+        font-family: 'Dancing Script', cursive;">Panda Login</h1>
 
         <div class="form-group">
           <input name='email' id="email" type="email" required="required" class="form-control"/>
@@ -35,9 +38,22 @@
           <div class="password error"></div>
         </div>
 
-        <button type='submit' class="btn btn-default btn-primary fa"><i class="fa fa-paper-plane"></i>Login </button>
+        <button type='submit' class=" btn-default btn-primary fa" style="
+        background: #fff;
+        padding: 5px;
+        width: 150px;
+        height: 35px;
+        border: 1px solid #ff4081;
+        margin-top: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 50px #ff4081 inset;
+        color: #fff;
+        "><i class="fa fa-paper-plane"></i>Login </button>
 
           <div>
+            <br>
+            <br>
           <p>Don't have an account ?<a href="/signup"> Signup </a></p>
           </div>   
       </form>
