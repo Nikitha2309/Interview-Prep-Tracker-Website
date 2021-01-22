@@ -1,10 +1,16 @@
 <%- include('partials/header'); -%>
 
+<link rel="stylesheet" href="/style_topics.css">
+<div class="topics_bg">
+<div class="topics_box">
 <h1>Wecome to <%- topic %></h1>
-<ul>
+<br>
+<br>
+<ol class="menu_list">
     <% questions.forEach(function(question) { %>
-    <li><a href=<%- question.link %> ><%- question.name %></a></li>
+    <li class="menu_item"><a class="menu_headline" href ='<%- question.link %>' ><%- question.name %></a></li>
     <% }); %>
 </ul>
-
-<%- include('partials/footer'); -%> 
+</div>
+</div>
+<%- include('partials/footer'); -%>

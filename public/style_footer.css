@@ -1,0 +1,22 @@
+.footer_wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.footer_content {
+    /* padding the footer adds 40 to footer height */
+    padding-bottom: 140px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    background:  #d9f0f7;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    color:black;
+    padding: 20px;
+    width:100%;
+    text-align: center;
+    left: 0;
+}
