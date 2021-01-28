@@ -8,11 +8,15 @@ const questionSchema =new mongoose.Schema({
     },
     link:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     topic:{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Topic'
+    },
+    valid:{
+        type:Boolean,
     }
 });
 
