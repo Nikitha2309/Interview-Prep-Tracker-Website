@@ -1,0 +1,109 @@
+<%- include('partials/header'); -%>
+
+<link rel="stylesheet" href="/style_formQuestion.css">
+    <div class="panda">
+        <div class="ear"></div>
+        <div class="face">
+          <div class="eye-shade"></div>
+          <div class="eye-white">
+            <div class="eye-ball"></div>
+          </div>
+          <div class="eye-shade rgt"></div>
+          <div class="eye-white rgt">
+            <div class="eye-ball"></div>
+          </div>
+          <div class="nose"></div>
+          <div class="mouth"></div>
+        </div>
+        <div class="body"> </div>
+      </div>
+
+      <form action="/signup">
+        <div class="hand"></div>
+        <div class="hand rgt"></div>
+        <h1 style="color: #ff4081;
+        font-weight: bolder;
+        font-size: 30px;
+        font-family: 'Dancing Script', cursive;">Panda Question</h1>
+
+        <div class="form-group">
+          <input type='text' name='name' required="required" class="form-control"/>
+          <label class="form-label">Name    </label>
+          <div class="name error"></div>
+        </div>
+
+        <div class="form-group">
+            <input type='text' name='link' required="required" class="form-control"/>
+            <label class="form-label">Link   </label>
+            <div class="link error"></div>
+          </div>
+
+        <div class="form-group">
+          
+            <select name='topic'  required="required" class="form-control">
+                <option value='hello'>hello</option>
+                <% topics.forEach(function(topic) { %>
+                    <option value=<%- topic._id %>><%- topic.name %></option>
+                <% }); %>
+                <option value='hello'>hell</option>
+            </select>
+         <div class="topic error"></div>
+        </div>
+
+          <button type='submit' class=" btn-default btn-primary fa" style="
+          background: #fff;
+          padding: 5px;
+          width: 150px;
+          height: 35px;
+          border: 1px solid #ff4081;
+          margin-top: 25px;
+          cursor: pointer;
+          transition: 0.3s;
+          box-shadow: 0 50px #ff4081 inset;
+          color: #fff;
+          "><i class="fa fa-paper-plane"></i> Add </button>
+
+        </div>
+      </form>
+   
+      <script >
+        const form = document.querySelector('form');
+        const nameError = document.querySelector('.name.error');
+        const linkError = document.querySelector('.link.error');
+        const topicError = document.querySelector('.topic.error');
+        form.addEventListener('submit' , async (e) =>{
+            e.preventDefault();
+            const name = form.name.value;
+            const link = form.link.value;
+            const topic = form.topic.value;
+            nameError.textContent = '';
+            linkError.textContent = '';
+            topicError.textContent = '';
+            try {
+                    const res = await fetch('/formQuestion', {
+                        method: 'POST',
+                        body: JSON.stringify({name,link,topic}),
+                        headers: {'Content-Type':'application/json'}
+                    });
+                const data = await res.json();
+                if(data.errors){
+                    nameError.textContent = data.errors.name;
+                    linkError.textContent = data.errors.link;
+                    topicError.textContent = data.errors.topic;
+                }
+
+                alert('done vro ;) waiting for admin approval :/ ');
+               location.assign('/');
+            
+            } catch (error) {
+                console.log(error);
+            }
+            });
+    
+               </script>
+
+
+<%- include('partials/footer'); -%>
+
+
+

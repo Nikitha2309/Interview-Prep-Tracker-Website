@@ -15,7 +15,7 @@ const handleErrors=(err)=>{
      let errors={email:'',password:'',username:''};
 
     //1.duplicate error code
-     if(error.code == 11000){
+     if(err.code == 11000){
         if((Object.keys(error.keyPattern)).includes('email')){
             errors.email= 'email already registered';
         }

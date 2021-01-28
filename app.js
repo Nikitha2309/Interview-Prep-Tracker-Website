@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser=require('cookie-parser');
 const {default : AdminBro} = require('admin-bro');
 
+const formRoutes = require('./routes/formRoutes');
 const authRoutes = require('./routes/authRoutes');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const secrets=require('./secret');
@@ -13,16 +14,26 @@ const Topic=require('./models/Topic');
 const Question=require('./models/Question'); 
 const {Admin,adminOptions}= require('./models/Admin');
 
+//to be exported
+let topics=[];
+let database=[];
+
 //database URI
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
 //mongoose connect
 mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
 .then(() => {                           
       console.log('mongoose connected');
-      var database = mongoose.connection;
+       database = mongoose.connection;
+       module.exports.database=database;
+      database.db.collection('topics').find({}).toArray().then((dbtopics)=>{
+         topics=dbtopics;
+         module.exports.topics=topics;
+       });
       appsetup(database);
   })
 .catch(err => console.log('dberror vro:',err));
+
 
 //after mongoose connection is setup and database is extracted , appsetup will run
 const appsetup = (database) =>{
@@ -52,8 +63,7 @@ const appsetup = (database) =>{
   });
 
   app.use(authRoutes); 
-
-  
+  app.use(formRoutes);
 
   app.get('/topics',requireAuth,(req,res)=>{
     database.db.collection('topics').find({}).toArray().then((topics)=>{
