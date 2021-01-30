@@ -63,7 +63,9 @@
 
                 <% if(user){ %>
                     <div class='header_signup'>Welcome <%= user.username %></div>
-                    <div class='header_login'> <a href="/logout">Logout</a></div>
+                    <div class="header_login">
+                      <button class='button btn-default btn'><a class="header_text" href="/logout">Logout</a></h3></button>
+                    </div>
                 <% }else{ %>
                     <div class="header_signup">
                         <button class='button btn-default btn'><a class="header_text" href="/signup">Sign Up</a></button>
