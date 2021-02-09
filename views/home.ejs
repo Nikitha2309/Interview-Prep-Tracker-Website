@@ -1,63 +1,66 @@
 <%- include('partials/header'); -%>
 
-<br>
-<br>
 
-<div>
-  <div class="container-fluid bg">
-    <div class="row ">
-      <div class="column">
-          <div class="row">
-              <div class="card">
-                <h3>ARRAYS</h3><br>
-                <a href="">Get Started</a>
-              </div>
-            </div>
-            <br>
-            <br>
-          
+<div class="welcome-area" id="welcome">
+
+    <!-- ***** Header Text Start ***** -->
+    <div class="header-text">
+        <div class="container">
             <div class="row">
-              <div class="card">
-                <h3>TREES</h3><br>
-                <a href="">Get Started</a>
-              </div>
+                <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <h1>Simple App that helps you <em>ACHIEVE</em></h1>
+                     
+                    <a href="signup" class="main-button-slider">Signup</a>
+                    <a href="/login" class="main-button-slider">Login</a>
+                </div>
             </div>
-            <br>
-            <br>
-            <div class="row">
-              <div class="card">
-                <h3>HEAPS</h3><br>
-                <a href="">Get Started</a>
-              </div>
-            </div>
-  
-      </div>
-      
-      <div class="column">
-          <div class="row">
-              <div class="card">
-                <h3>QUEUES</h3><br>
-                <a href="">Get Started</a>
-              </div>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-              <div class="card">
-                <h3>POINTERS</h3><br>
-                <a href="">Get Started</a>
-              </div>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-              <div class="card">
-                <h3>STACKS</h3><br>
-                <a href="">Get Started</a>
-              </div>
-            </div>
-      </div>
-      
+        </div>
     </div>
-  </div>
+    <!-- ***** Header Text End ***** -->
 </div>
+<!-- ***** Welcome Area End ***** -->
+
+
+<div class="left-image-decor"></div>
+
+<!-- ***** Features Big Item Start ***** -->
+<section class="section" id="promotion">
+    <div class="container">
+        <div class="row">
+            <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
+            </div>
+            <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix ">
+                <br>
+                <br>
+                <br>
+                <br>
+                <ul>
+                    <li data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <img src="assets/images/about-icon-01.png" alt="">
+                        <div class="text">
+                            <h4>Practise</h4>
+                            <p>Practise many questions on arrays, trees, queues, and many other DSA Questions. All the best</p>
+                        </div>
+                    </li>
+                    <li data-scroll-reveal="enter right move 30px over 0.6s after 0.5s">
+                        <img src="assets/images/about-icon-02.png" alt="">
+                        <div class="text">
+                            <h4>Interview - experience </h4>
+                            <p>Get the experiences of seniors and prepare for your interviews. </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Features Big Item End ***** -->
+
+<div class="right-image-decor"></div>
+
+
+<%- include('partials/footer'); -%>
