@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User =require('../models/User');
+const {User} =require('../models/User');
 
 const maxAge=3*24*60*60; //3 days
 const createToken = (id) => {
@@ -15,7 +15,7 @@ const handleErrors=(err)=>{
      let errors={email:'',password:'',username:''};
 
     //1.duplicate error code
-     if(error.code == 11000){
+     if(err.code == 11000){
         if((Object.keys(error.keyPattern)).includes('email')){
             errors.email= 'email already registered';
         }

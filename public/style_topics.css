@@ -1,0 +1,112 @@
+.topics_bg{
+    background-image: url('/topics_bg.jpeg');
+    background-repeat: no-repeat;
+    height: 700px;
+    background-color:#f4f4f4 ;
+    /* position: centre ; */
+    left:40px;
+    width:100%;
+    padding: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.topics_box{
+    position: absolute;
+    right: 80px;
+    width: 800px;
+    height:530px;
+     /* border: 3px solid #5b0ec0;  */
+    padding: 30px;
+   overflow-y: scroll;
+   /* text-align: center ; */
+}
+h1 {
+    font-size: 40px;
+    text-align: center;
+  }
+:root {
+    --bg: #fdfdfd;
+    --highlight1: #ed4264;
+    --highlight2: #ffedbc;
+    --color: #1a1e24;
+    --font-number: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+    --font-head: "Space Mono", Consolas, Menlo, Monaco, "Courier New", monospace;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+}
+
+.menu_list {
+    list-style: none;
+    width: 600px;
+    max-width: 90%;
+}
+
+.menu_item {
+    display: block;
+    clear: both;
+    counter-increment: list;
+    padding-bottom: 4rem;
+    font-size: 1.1rem;
+    line-height: 1.375;
+    position: relative;
+}
+
+.menu_item:before {
+    font: bold 2.25rem/1 var(--font-number);
+    content: counter(list);
+    width: 5rem;
+    height: 5rem;
+    float: left;
+    margin: 0 1.5rem 0.75rem 0;
+    color: var(--bg);
+    background: var(--highlight1)
+        linear-gradient(
+            to bottom right,
+            var(--highlight1) 25%,
+            var(--highlight2)
+        );
+    text-shadow: 0 0 2px var(--highlight1);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    shape-outside: ellipse();
+    z-index: 1;
+}
+
+.menu_item:after {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background: var(--highlight1);
+    z-index: -1;
+    border-top-left-radius: 3px;
+}
+
+.menu_headline {
+    padding: 0rem 0 0 0;
+    margin: 0 0 1rem 0;
+    font: normal 2rem var(--font-head);
+}
+
+/* Demo styles */
+
+/* body {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg);
+    font-family: var(--font);
+    padding: 4rem 0;
+} */
+
+
+

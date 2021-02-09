@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail }=require('validator');
 const bcrypt=require('bcrypt');
+const { username, password } = require('../secret');
 
 const userSchema = new mongoose.Schema({
         email :  {
@@ -43,4 +44,9 @@ userSchema.statics.login = async function(email,password){
     throw Error('incorrect email');
 }
 const User = mongoose.model('User',userSchema);
-module.exports=User;
+module.exports.User=User;
+
+const createUser = (email,username,password) =>{
+    User.create({email,username,password});
+};
+module.exports.createUser=createUser;
