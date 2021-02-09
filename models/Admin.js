@@ -15,16 +15,17 @@ const adminSchema = new mongoose.Schema({
 });
 const Admin = mongoose.model('Admin',adminSchema);
 
-//create first admin
-argon2.hash('secret').then( (password) => {
-    const  mypassword=password; 
-    Admin.create( { email: 'admin@gmail.com' , password : mypassword },function(err){
+//create admin function
+const createAdmin = (email,password) => {
+  argon2.hash(password).then( (hashedPassword) => {
+    const  mypassword=hashedPassword; 
+    Admin.create( { email: email , password : mypassword },function(err){
     if(err) 
     {
         console.log('admin creation problem ',err);
         return err;
-    }
-              });             });
+    }});              });
+ };
 
 const passwordBeforeHook = async (request) => {
     if (request.method === 'post') {
@@ -79,5 +80,6 @@ module.exports.adminOptions= {
     resource : Admin,
 };
 module.exports.Admin=Admin;
+module.exports.createAdmin=createAdmin;
 
     

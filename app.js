@@ -9,10 +9,15 @@ const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const secrets=require('./secret');
 const buildAdminRouter = require('./admin/admin.router');
 const options = require('./admin/admin.options');
-const User = require('./models/User');
+const {User,createUser} = require('./models/User');
 const Topic=require('./models/Topic');
 const Question=require('./models/Question'); 
-const {Admin,adminOptions}= require('./models/Admin');
+const {Admin,adminOptions,createAdmin}= require('./models/Admin');
+//call this function in appsetup if we want to create a admin cum user in databse 
+const createAdminCumUser = (email,username,password) => {
+  createUser(email,username,password);
+  createAdmin(email,password);
+};
 
 //to be exported
 let topics=[];
@@ -64,6 +69,9 @@ const appsetup = (database) =>{
 
   app.use(authRoutes); 
   app.use(formRoutes);
+
+  //createAdminCumUser("email","username","password"); //to create admin cum user
+
 
   app.get('/topics',requireAuth,(req,res)=>{
     database.db.collection('topics').find({}).toArray().then((topics)=>{
