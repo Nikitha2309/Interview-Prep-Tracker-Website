@@ -49,4 +49,38 @@ const checkUser =(req,res,next)=>{
     }
 };
 
-module.exports={requireAuth,checkUser};
+const checkAdmin =(req,res,next)=>{
+    //token of req
+    const token =req.cookies.jwt;
+    //if it exists
+    if(token){
+        jwt.verify(token,'hakuna matata',async(err,decodedToken) => {
+            //incase of a error
+            if(err){
+                  res.locals.admin=null;
+                  return false;
+                  next();
+            }else{
+                let admin= await Admin.findById(decodedToken.id);
+                if(admin==null)
+                {
+                    return false;
+                }
+                else{
+                    res.locals.Admin=admin;
+                    return true;
+                }
+                next();
+            }
+        });
+
+    }else{
+        res.locals.user=null;
+        return false;
+        next();
+    }
+};
+
+
+
+module.exports={requireAuth,checkUser,checkAdmin};
