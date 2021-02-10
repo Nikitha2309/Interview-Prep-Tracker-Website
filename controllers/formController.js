@@ -1,5 +1,6 @@
 const Question = require("../models/Question");
 const app=require('../app');
+const {checkAdmin} = require('../middleware/authMiddleware');
 
 const handleErrors=(err)=>{
     console.log(err.message,err.code);
@@ -36,7 +37,17 @@ module.exports.formQuestion_post = (req,res) => {
     const {name,link,topic}=req.body;
     try
     {
-        const valid=false;
+        let valid;
+        if(checkAdmin)
+        {
+            valid=true;
+            console.log("admin added ques");
+        }
+        else
+        {
+            valid=false;
+            console.log("user added ques");
+        }
         const question= Question.create({name,link,topic,valid});
         alert('some alert');
         res.redirect('/some page');
