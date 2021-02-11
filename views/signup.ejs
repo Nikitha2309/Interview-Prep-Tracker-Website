@@ -1,97 +1,102 @@
 <%- include('partials/header'); -%>
 
-<link rel="stylesheet" href="/style_auth.css">
-    <div class="panda">
-        <div class="ear"></div>
-        <div class="face">
-          <div class="eye-shade"></div>
-          <div class="eye-white">
-            <div class="eye-ball"></div>
+<div class="welcome-area" id="welcome">
+
+  <!-- ***** Header Text Start ***** -->
+  <div class="header-text">
+      <div class="container">
+          <div class="row">
+              <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+                  data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                  <form>
+                      <h2 style="padding-left: 120px;"> SIGN UP</h2>
+                      <br>
+                      <div class="form-group row">
+                          <label for="username" class="col-sm-2 col-form-label">Username</label>
+                          <div class="col-sm-10">
+                            <input type="text"  name="username" placeholder="Username" required>
+                            <div class="username error"></div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="email" class="col-sm-2 col-form-label">Email</label>
+                          <div class="col-sm-10">
+                            <input type="email"  name='email' placeholder="Email" required>
+                            <div class="email error"></div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="password" class="col-sm-2 col-form-label">Password</label>
+                          <div class="col-sm-10">
+                            <input type="password"  name="Password" placeholder="password" required>
+                            <div class="password error"></div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+                          <div class="col-sm-10">
+                            <input type="password"  name="confirmPassword" placeholder="Confirm Password" required>
+                            <div class="confirmPassword error"></div>
+                          </div>
+                          <br>
+                          <div style="padding-left:140px;">
+                          <button type="submit" class="btn btn-primary">Sign in</button>
+                          </div>
+                      </div>
+                      <div style="padding-left: 50px;">
+                          <h6>
+                              Already a member , <a href="/login">Login</a> ?
+                          </h4>
+                      </div>
+                      
+                      
+                    </form>
+              </div>
           </div>
-          <div class="eye-shade rgt"></div>
-          <div class="eye-white rgt">
-            <div class="eye-ball"></div>
-          </div>
-          <div class="nose"></div>
-          <div class="mouth"></div>
-        </div>
-        <div class="body"> </div>
       </div>
+  </div>
+  <!-- ***** Header Text End ***** -->
+</div>
+<!-- ***** Welcome Area End ***** -->
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
 
-      <form action="/signup">
-        <div class="hand"></div>
-        <div class="hand rgt"></div>
-        <h1 style="color: #ff4081;
-        font-weight: bolder;
-        font-size: 30px;
-        font-family: 'Dancing Script', cursive;">Panda SignUp</h1>
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
-        <div class="form-group">
-          <input type='email' name='email' required="required" class="form-control"/>
-          <label class="form-label">Email    </label>
-          <div class="email error"></div>
-        </div>
+<!-- Plugins -->
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script>
 
-        <div class="form-group">
-            <input type='text' name='username' required="required" class="form-control"/>
-            <label class="form-label">Username    </label>
-            <div class="username error"></div>
-          </div>
-
-        <div class="form-group">
-          <input id="password" name='password' type="password" required="required" class="form-control"/>
-          <label class="form-label">Password</label>
-          <div class="password error"></div>
-        </div>
-
-        <div class="form-group">
-            <input id="confirmPassword" name='confirmPassword' type="password" required="required" class="form-control"/>
-            <label class="form-label">confirm Password</label>
-            <div class="confirmPassword error"></div>
-          </div>
-
-          <button type='submit' class=" btn-default btn-primary fa" style="
-          background: #fff;
-          padding: 5px;
-          width: 150px;
-          height: 35px;
-          border: 1px solid #ff4081;
-          margin-top: 25px;
-          cursor: pointer;
-          transition: 0.3s;
-          box-shadow: 0 50px #ff4081 inset;
-          color: #fff;
-          "><i class="fa fa-paper-plane"></i> SignUp </button>
-        <div>
-          <br>
-          <p>Already have an account ?<a href="/login"> Login </a></p>
-        </div>
-        </div>
-      </form>
-   
-      <script >
-        const form = document.querySelector('form');
-        const emailError = document.querySelector('.email.error');
-        const usernameError = document.querySelector('.username.error');
-        const passwordError = document.querySelector('.confirmPassword.error');
-        form.addEventListener('submit' , async (e) =>{
-            e.preventDefault();
-            const email = form.email.value;
-            const username = form.username.value;
-            const password = form.password.value;
-            const confirmPassword = form.confirmPassword.value;
-            emailError.textContent = '';
-            usernameError.textContent = '';
-            passwordError.textContent = '';
-            if(confirmPassword != password){
-                passwordError.textContent = 'Password not matching';
-            }else{
-                try {
-                    const res = await fetch('/signup', {
-                        method: 'POST',
-                        body: JSON.stringify({email,username,password}),
-                        headers: {'Content-Type':'application/json'}
-                    });
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>
+<script>
+    const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error');
+    const usernameError = document.querySelector('.username.error');
+    const passwordError = document.querySelector('.confirmPassword.error');
+    form.addEventListener('submit' , async (e) =>{
+        e.preventDefault();
+        const email = form.email.value;
+        const username = form.username.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+        emailError.textContent = '';
+        usernameError.textContent = '';
+        passwordError.textContent = '';
+        if(confirmPassword != password){
+            passwordError.textContent = 'Password not matching';
+        }else{
+            try {
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({email,username,password}),
+                    headers: {'Content-Type':'application/json'}
+                });
                 const data = await res.json();
                 if(data.errors){
                     emailError.textContent = data.errors.email;
@@ -104,10 +109,9 @@
             } catch (error) {
                 console.log(error);
             }
-            }
-            });
-    
-               </script>
+        }
+        });
+</script>
 
 
 <%- include('partials/footer'); -%>
