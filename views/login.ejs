@@ -1,94 +1,97 @@
 <%- include('partials/header'); -%>
 
-   <link rel="stylesheet" href="/style_auth.css"> 
-    <div class="panda">
-        <div class="ear"></div>
-        <div class="face">
-          <div class="eye-shade"></div>
-          <div class="eye-white">
-            <div class="eye-ball"></div>
+<div class="welcome-area" id="welcome">
+<div class="header-text">
+  <div class="container">
+      <div class="row">
+          <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+              data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+              <form>
+                  <h2 style="padding-left: 120px;">LOGIN</h2>
+                  <br>
+                  
+                  <div class="form-group row">
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email"  name='email' placeholder="Email" required>
+                        <div class="email error"></div>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                      <label for="password" class="col-sm-2 col-form-label">Password</label>
+                      <div class="col-sm-10">
+                        <input type="password"  name="password" placeholder="Password" required>
+                        <div class="password error"></div>
+                      </div>
+                      <br>
+                      <br>
+                      <div style="padding-left:140px;">
+                      <button type="submit" class="btn btn-primary">Login</button>
+                      </div>
+                  </div>
+                  <div style="padding-left: 50px;">
+                      <h6>
+                          New to website ,<a href="/signup">Signup</a>  ?
+                      </h4>
+                  </div>
+                  
+                  
+                </form>
           </div>
-          <div class="eye-shade rgt"></div>
-          <div class="eye-white rgt">
-            <div class="eye-ball"></div>
-          </div>
-          <div class="nose"></div>
-          <div class="mouth"></div>
-        </div>
-        <div class="body"> </div>
-    </div>
+      </div>
+  </div>
+</div>
+<!-- ***** Header Text End ***** -->
+</div>
+<!-- ***** Welcome Area End ***** -->
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
 
-    <form action="/login">
-        <div class="hand"></div>
-        <div class="hand rgt"></div>
-        <h1 style="color: #ff4081;
-        font-weight: bolder;
-        font-size: 30px;
-        font-family: 'Dancing Script', cursive;">Panda Login</h1>
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
-        <div class="form-group">
-          <input name='email' id="email" type="email" required="required" class="form-control"/>
-          <label class="form-label">email   </label>
-          <div class="email error"></div>
-        </div>
+<!-- Plugins -->
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script>
 
-        <div class="form-group">
-          <input name='password' id="password" type="password" required="required" class="form-control"/>
-          <label class="form-label">Password</label>
-          <div class="password error"></div>
-        </div>
-
-        <button type='submit' class=" btn-default btn-primary fa" style="
-        background: #fff;
-        padding: 5px;
-        width: 150px;
-        height: 35px;
-        border: 1px solid #ff4081;
-        margin-top: 25px;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 50px #ff4081 inset;
-        color: #fff;
-        "><i class="fa fa-paper-plane"></i>Login </button>
-
-          <div>
-            <br>
-            <br>
-          <p>Don't have an account ?<a href="/signup"> Signup </a></p>
-          </div>   
-      </form>
-
-      <script>
-        const form = document.querySelector('form');
-        console.log('hello');
-        const emailError = document.querySelector('.email.error');
-        const passwordError = document.querySelector('.password.error');
-        form.addEventListener('submit' , async (e) =>{
-            e.preventDefault();
-            emailError.textContent = '';
-            passwordError.textContent = '';
-            const email = form.email.value;
-            const password = form.password.value;
-            try {
-                const res = await fetch('/login', {
-                    method: 'POST',
-                    body: JSON.stringify({email,password}),
-                    headers: {'Content-Type':'application/json'}
-                });
-                const data = await res.json();
-                console.log(data);
-                if(data.errors){
-                    emailError.textContent = data.error.email;
-                    passwordError.textContent = data.error.password;
-                }
-                if(data.user){
-                    location.assign('/');
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        });
-         </script>
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>
+<script>
+const form = document.querySelector('form');
+console.log('hello');
+const emailError = document.querySelector('.email.error');
+const passwordError = document.querySelector('.password.error');
+form.addEventListener('submit' , async (e) =>{
+e.preventDefault();
+emailError.textContent = '';
+passwordError.textContent = '';
+const email = form.email.value;
+const password = form.password.value;
+try {
+  const res = await fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify({email,password}),
+      headers: {'Content-Type':'application/json'}
+  });
+  const data = await res.json();
+  console.log(data);
+  if(data.errors){
+      emailError.textContent = data.error.email;
+      passwordError.textContent = data.error.password;
+  }
+  if(data.user){
+      location.assign('/topics');
+  }
+} catch (error) {
+  console.log(error);
+}
+});
+</script>
     
 
 <%- include('partials/footer'); -%>
