@@ -1,5 +1,6 @@
 <%- include('partials/header'); -%>
 
+
 <div class="welcome-area" id="welcome">
 
     <!-- ***** Header Text Start ***** -->
@@ -29,7 +30,7 @@
         <div class="row">
             <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
                 data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                <img src="assets/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                <img src="/images/left-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
             </div>
             <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix ">
                 <br>
@@ -38,20 +39,23 @@
                 <br>
                 <ul>
                     <li data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img src="assets/images/about-icon-01.png" alt="">
+                        <img src="/images/about-icon-01.png" alt="">
+                        
                         <div class="text">
-                            <h4>Practise</h4>
+                            <a href="topics" ><h4>Practise</h4></a>
                             <p>Practise many questions on arrays, trees, queues, and many other DSA Questions. All the best</p>
-                        </div>
+                      
+                    </div>
                     </li>
                     <li data-scroll-reveal="enter right move 30px over 0.6s after 0.5s">
-                        <img src="assets/images/about-icon-02.png" alt="">
+                        <img src="/images/about-icon-02.png" alt="">
+                      
                         <div class="text">
-                            <h4>Interview - experience </h4>
+                            <a href="interviewexp"><h4>Interview - experience </h4></a>
                             <p>Get the experiences of seniors and prepare for your interviews. </p>
                         </div>
+                        
                     </li>
-                    
                 </ul>
             </div>
         </div>
@@ -61,5 +65,5 @@
 
 <div class="right-image-decor"></div>
 
-<%- include('partials/footer'); -%>
 
+<%- include('partials/footer'); -%>
