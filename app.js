@@ -12,6 +12,8 @@ const options = require('./admin/admin.options');
 const {User,createUser} = require('./models/User');
 const Topic=require('./models/Topic');
 const Question=require('./models/Question'); 
+const Company=require('./models/Company');
+const Experience=require('./models/Experience'); 
 const {Admin,adminOptions,createAdmin}= require('./models/Admin');
 //call this function in appsetup if we want to create a admin cum user in databse 
 const createAdminCumUser = (email,username,password) => {
@@ -22,6 +24,7 @@ const createAdminCumUser = (email,username,password) => {
 //to be exported
 let topics=[];
 let database=[];
+let companys=[];
 
 //database URI
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
@@ -35,6 +38,10 @@ mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useC
          topics=dbtopics;
          module.exports.topics=topics;
        });
+       database.db.collection('companys').find({}).toArray().then((dbcompanys)=>{
+        companys=dbcompanys;
+        module.exports.companys=companys;
+      });
       appsetup(database);
   })
 .catch(err => console.log('dberror vro:',err));
@@ -78,6 +85,11 @@ const appsetup = (database) =>{
       res.render('topics',{ topics : topics});});
   });
 
+  app.get('/companies',requireAuth,(req,res)=>{
+    database.db.collection('companys').find({}).toArray().then((companys)=>{
+      res.render('companys',{ companys : companys});});
+  });
+
   app.get('/topics/:t_name',requireAuth,(req,res)=>{
     //to convert arrays -> Arrays
     let topic= req.params.t_name;
@@ -93,4 +105,21 @@ const appsetup = (database) =>{
          res.render('topic',{ topic:topic , questions : questions});})
     .catch((err)=> console.log('error2 ',err));
   });
+
+  app.get('/companys/:c_name',requireAuth,(req,res)=>{
+    //to convert arrays -> Arrays
+    let company= req.params.c_name;
+    company=company.charAt(0).toUpperCase() + company.slice(1);
+    //find company  in companys collection
+    database.db.collection('companys').findOne({ name : company.toString()})
+    //then get all experiences linked to it
+    .then((company)=>{
+         let experiences= database.db.collection('experiences').find({ company : company._id}).toArray();
+         return experiences;    })
+    //finally render the page
+    .then((experiences)=>{
+         res.render('company',{ company:company , experiences : experiences});})
+    .catch((err)=> console.log('error3 ',err));
+  });
+
 } 
