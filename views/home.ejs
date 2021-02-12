@@ -9,10 +9,15 @@
             <div class="row">
                 <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
                     data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <h1>Simple App that helps you <em>ACHIEVE</em></h1>
-                     
-                    <a href="signup" class="main-button-slider">Signup</a>
-                    <a href="/login" class="main-button-slider">Login</a>
+
+                    <% if(user){ %>
+                        <h1>Simple App that helps you <em>ACHIEVE</em></h1>
+                        <h2> Welcome , <%= user.username %> </h2>
+                        <% } else{ %>
+                            <h1>Simple App that helps you <em>ACHIEVE</em></h1>
+                            <a href="signup" class="main-button-slider">Signup</a>
+                            <a href="/login" class="main-button-slider">Login</a>
+                            <% } %>
                 </div>
             </div>
         </div>

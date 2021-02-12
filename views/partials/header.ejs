@@ -54,11 +54,20 @@ https://templatemo.com/tm-540-lava-landing-page
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="/" class="menu-item">Home</a></li>
+                            
                             <li class="scroll-to-section"><a href="#promotion" class="menu-item">PRACTISE</a></li>
                             <li class="scroll-to-section"><a href="#promotion" class="menu-item">INTERVIEW EXPERIENCE</a>
                             </li>
-                            <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+                            <li class="dropdown scroll-to-section">
+                                <a class=" dropdown-toggle" href="#"  role="button" data-toggle="dropdown"> Contribute </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="#">Question</a>
+                                  <a class="dropdown-item" href="#">Experience </a>
+                                </div>
+                              </li>
+                              <% if(user){ %>
+                                <li><a class="scroll-to-section" href="/logout" class="menu-item">Log out</a></li>
+                                <% } %>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
