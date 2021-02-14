@@ -1,18 +1,27 @@
 <%- include('partials/header'); -%>
 
-<link rel="stylesheet" href="/style_topics.css">
-<div class="topics_bg">
-<div class="topics_box">
-<h1>Wecome to <%- topic %></h1>
-<br>
-<br>
-<ol class="menu_list">
-    <% questions.forEach(function(question) { %>
+
+<section class="section" id="about">
+    <div class="container " style="text-align: center; color:red;">
+      <h1>Wecome to <%- topic %></h1>
+
+      <% questions.forEach(function(question) { %>
         <% if(question.valid) { %>
-          <li class="menu_item"><a class="menu_headline" href ='<%- question.link %>' ><%- question.name %></a></li>
+        <div class="column" style="padding-top: 50px;">
+            <div class="row-lg-4 row-md-6 row-sm-12 row-xs-12"
+                data-scroll-reveal="enter right move 30px over 0.6s after 0.4s" style="background-color: thistle;">
+                <div class="features-item">
+                    <div class="features-icon">
+                        <img src="/images/features-icon-3.png" alt="">
+                        <li><a href ='<%- question.link %>' ><%- question.name %></a></li>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <% } %>
-    <% }); %>
-</ol>
-</div>
-</div>
-<%- include('partials/footer'); -%>
+        <% }); %>
+    </div>
+</section>
+
+<%- include('partials/footer'); -%> 
