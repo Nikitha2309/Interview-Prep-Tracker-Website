@@ -4,22 +4,66 @@
 <section class="section" id="about">
     <div class="container " style="text-align: center; color:red;">
         <h3> LET'S START SOLVING </h3>
-        <% topics.forEach(function(topic) { %>
-        <div class="column" style="padding-top: 50px;">
-            <div class="row-lg-4 row-md-6 row-sm-12 row-xs-12"
-                data-scroll-reveal="enter right move 30px over 0.6s after 0.4s" style="background-color: thistle;">
-                <div class="features-item">
-                    <div class="features-icon">
-                        <img src="/images/features-icon-3.png" alt="">
-                        
-                            <h3><%- topic.name %></h3>
-                            <a href ='/topics/<%- topic.name %>'> Practise</a>
-                        
+
+      <%  for (i = 0; i < topics.length;) {   %>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="row">
+                    <% if(i< topics.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="/assets/images/features-icon-1.png" alt="">
+                                <h4><%- topics[i]['name'] %></h4>
+                                <a href="/topics/<%- topics[i]['name'] %>" class="main-button">
+                                    Practise
+                                </a>
+                            </div>
+                        </div>
                     </div>
+                    <% } %>
+                    <% i++; %>
+                    <% if(i< topics.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="assets/images/features-icon-2.png" alt="">
+                                <h4><%- topics[i]['name'] %></h4>
+                                <a href="/topics/<%- topics[i]['name'] %>" class="main-button">
+                                    Practise
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% i++; %>
+                    <% if(i< topics.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="assets/images/features-icon-3.png" alt="">
+                                <h4><%- topics[i]['name'] %></h4>
+                                <a href="/topics/<%- topics[i]['name'] %>" class="main-button">
+                                    Practise
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% i++; %>
                 </div>
             </div>
-        </div>
-        <% }); %>
+        </section>
+        <% } %>
     </div>
 </section>
 
