@@ -1,16 +1,28 @@
 <%- include('partials/header'); -%>
 
-<link rel="stylesheet" href="/style_topics.css">
-<div class="topics_bg">
-<div class="topics_box">
-<h1>Wecome to topics</h1>
-<br>
-<br>
-<ol class="menu_list">
-    <% topics.forEach(function(topic) { %>
-    <li class="menu_item"><a class="menu_headline" href ='/topics/<%- topic.name %>' ><%- topic.name %></a></li>
-    <% }); %>
-</ul>
-</div>
-</div>
-<%- include('partials/footer'); -%>
+
+<section class="section" id="about">
+    <div class="container " style="text-align: center; color:red;">
+        <h3> LET'S START SOLVING </h3>
+        <% topics.forEach(function(topic) { %>
+        <div class="column" style="padding-top: 50px;">
+            <div class="row-lg-4 row-md-6 row-sm-12 row-xs-12"
+                data-scroll-reveal="enter right move 30px over 0.6s after 0.4s" style="background-color: thistle;">
+                <div class="features-item">
+                    <div class="features-icon">
+                        <img src="/images/features-icon-3.png" alt="">
+                        
+                            <h3><%- topic.name %></h3>
+                            <a href ='/topics/<%- topic.name %>'> Practise</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<%- include('partials/footer'); -%> 
+
+
