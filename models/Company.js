@@ -11,9 +11,9 @@ const companySchema =new mongoose.Schema({
         required:true,
         unique:true
     },
-    logo:{
-         data:Buffer,
-         contentType:String
+    image:{
+        type:String,
+        required:true
     }
 });
 

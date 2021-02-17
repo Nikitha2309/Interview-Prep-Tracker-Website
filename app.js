@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cookieParser=require('cookie-parser');
 const {default : AdminBro} = require('admin-bro');
+const fs = require('fs');
+const multer = require('multer');
+const bodyParser = require('body-parser');
+const path = require('path');
+const crypto = require('crypto');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const methodOverride = require('method-override');
 
 const formRoutes = require('./routes/formRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -15,6 +23,7 @@ const Question=require('./models/Question');
 const Company=require('./models/Company');
 const Experience=require('./models/Experience'); 
 const {Admin,adminOptions,createAdmin}= require('./models/Admin');
+const { CLIENT_RENEG_LIMIT } = require('tls');
 //call this function in appsetup if we want to create a admin cum user in databse 
 const createAdminCumUser = (email,username,password) => {
   createUser(email,username,password);
@@ -25,6 +34,7 @@ const createAdminCumUser = (email,username,password) => {
 let topics=[];
 let database=[];
 let companys=[];
+// let gfs;
 
 //database URI
 const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.cluster_name+'.qpyuy.mongodb.net/'+secrets.dbname+'?retryWrites=true&w=majority';
@@ -32,19 +42,65 @@ const dbURI='mongodb+srv://'+secrets.username+':'+secrets.password+'@'+secrets.c
 mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex :true})
 .then(() => {                           
       console.log('mongoose connected');
-       database = mongoose.connection;
+      database = mongoose.connection;
+      // Init stream
+      // gfs = Grid(database.db, mongoose.mongo);
+      // gfs.collection('companys');
        module.exports.database=database;
       database.db.collection('topics').find({}).toArray().then((dbtopics)=>{
          topics=dbtopics;
          module.exports.topics=topics;
        });
-       database.db.collection('companys').find({}).toArray().then((dbcompanys)=>{
+       database.db.collection('companies').find({}).toArray().then((dbcompanys)=>{
         companys=dbcompanys;
         module.exports.companys=companys;
       });
       appsetup(database);
   })
 .catch(err => console.log('dberror vro:',err));
+
+
+// const storageCompanys = new GridFsStorage({
+//   url: dbURI,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err);
+//         }
+//         const filename = buf.toString('hex') + path.extname(file.originalname);
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: 'companys'
+//         };
+//         resolve(fileInfo);
+//       });
+//     });
+//   }
+// });
+// const uploadCompanys = multer({ storageCompanys });
+// module.exports.uploadCompanys=uploadCompanys;
+
+// const storageExperiences = new GridFsStorage({
+//   url: dbURI,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err);
+//         }
+//         const filename = buf.toString('hex') + path.extname(file.originalname);
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: 'experiences'
+//         };
+//         resolve(fileInfo);
+//       });
+//     });
+//   }
+// });
+// const uploadExperiences = multer({ storageExperiences });
+// module.exports.uploadExperiences=uploadExperiences;
 
 
 //after mongoose connection is setup and database is extracted , appsetup will run
@@ -62,6 +118,8 @@ const appsetup = (database) =>{
   app.use(express.static('public'));
   app.use(express.json());
   app.use(cookieParser());
+  app.use(bodyParser.json());
+  app.use(methodOverride('_method'));
 
   //views
   app.set('view engine','ejs');
@@ -85,8 +143,8 @@ const appsetup = (database) =>{
       res.render('topics',{ topics : topics});});
   });
 
-  app.get('/companies',requireAuth,(req,res)=>{
-    database.db.collection('companys').find({}).toArray().then((companys)=>{
+  app.get('/companys',requireAuth,(req,res)=>{
+    database.db.collection('companies').find({}).toArray().then((companys)=>{
       res.render('companys',{ companys : companys});});
   });
 
@@ -111,7 +169,7 @@ const appsetup = (database) =>{
     let company= req.params.c_name;
     company=company.charAt(0).toUpperCase() + company.slice(1);
     //find company  in companys collection
-    database.db.collection('companys').findOne({ name : company.toString()})
+    database.db.collection('companies').findOne({ name : company.toString()})
     //then get all experiences linked to it
     .then((company)=>{
          let experiences= database.db.collection('experiences').find({ company : company._id}).toArray();

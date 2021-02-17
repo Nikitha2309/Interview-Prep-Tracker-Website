@@ -1,8 +1,9 @@
 const Question = require("../models/Question");
+const Experience = require("../models/Experience");
 const app=require('../app');
 const {checkAdmin} = require('../middleware/authMiddleware');
 
-const handleErrors=(err)=>{
+const handleErrorsQuestion=(err)=>{
     console.log(err.message,err.code);
 
     //error messages
@@ -21,6 +22,28 @@ const handleErrors=(err)=>{
 
     //invalid question 
     if (err.message.includes('Question validation failed')){
+        Object.values(err.errors).forEach(({properties})=>{
+          errors[properties.path]=properties.message;
+        });
+    }
+    return errors;
+
+}
+
+const handleErrorsExperience=(err)=>{
+    console.log(err.message,err.code);
+
+    //error messages
+     let errors={name:'',title:'',image:'',company:'',description:''};
+
+    //1.duplicate error code
+     if(err.code == 11000){
+        rrors.name= 'experience with this title already exists';
+        return errors;
+    }
+
+    //invalid question 
+    if (err.message.includes('Experience validation failed')){
         Object.values(err.errors).forEach(({properties})=>{
           errors[properties.path]=properties.message;
         });
@@ -54,9 +77,40 @@ module.exports.formQuestion_post = (req,res) => {
     }
     catch(err)
     {
-       const errors=handleErrors(err);
+       const errors=handleErrorsQuestion(err);
        console.log(err);
        res.status(400).json({errors});
     }
+}
+
+module.exports.formExperience_get =(req,res) => {
+    res.render('formExperience',{ companys : app.companys});    
+}
+
+module.exports.formExperience_post = (req,res) => {
+   const {name,title,image,company,description}=req.body;
+   try
+   {
+       let valid;
+       if(checkAdmin)
+       {
+           valid=true;
+           console.log("admin added experience");
+       }
+       else
+       {
+           valid=false;
+           console.log("user added experience");
+       }
+       const question= Question.create({name,title,image,company,description,valid});
+       alert('some alert');
+       res.redirect('/some page');
+   }
+   catch(err)
+   {
+      const errors=handleErrorsExperience(err);
+      console.log(err);
+      res.status(400).json({errors});
+   }
 }
 
