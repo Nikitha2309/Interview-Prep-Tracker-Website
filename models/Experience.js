@@ -3,13 +3,16 @@ const Company=require('./Company');
 const experienceSchema =new mongoose.Schema({
     name:{
         type:String,
-        required:true,
-        unique:true
+        required:true
     },
-    Title:{
+    title:{
         type:String,
         required:true,
         unique:true
+    },
+    image:{
+        type:String,
+        required:true
     },
     company:{
         type: mongoose.Schema.Types.ObjectId, 
@@ -18,10 +21,10 @@ const experienceSchema =new mongoose.Schema({
     description:{
         type:String,
         required:true
+    },
+    valid:{
+        type:Boolean,
     }
-    // valid:{
-    //     type:Boolean,
-    // }
 });
 
 const Experience = mongoose.model('Experience',experienceSchema);

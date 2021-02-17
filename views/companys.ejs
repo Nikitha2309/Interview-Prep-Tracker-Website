@@ -1,0 +1,72 @@
+<%- include('partials/header'); -%>
+
+
+<section class="section" id="about">
+    <div class="container " style="text-align: center; color:red;">
+        <h3> LET'S START EXPLORING </h3>
+
+      <%  for (i = 0; i < companys.length;) {   %>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="row">
+                    <% if(i< companys.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="<%- companys[i]['image'] %>" alt="">
+                                <h4><a href="<%- companys[i]['link'] %>"><%- companys[i]['name'] %></a></h4>
+                                <a href="/companys/<%- companys[i]['name'] %>" class="main-button">
+                                    Explore
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% i++; %>
+                    <% if(i< companys.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="<%- companys[i]['image'] %>" alt="">
+                                <h4><a href="<%- companys[i]['link'] %>"><%- companys[i]['name'] %></a></h4>
+                                <a href="/companys/<%- companys[i]['name'] %>" class="main-button">
+                                    Explore
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% i++; %>
+                    <% if(i< companys.length) { %>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <div class="features-item">
+                            <div class="features-icon">
+                                <h2><%= i+1 %></h2>
+                                <br>
+                                <img src="<%- companys[i]['image'] %>" alt="">
+                                <h4><a href="<%- companys[i]['link'] %>"><%- companys[i]['name'] %></a></h4>
+                                <a href="/companys/<%- companys[i]['name'] %>" class="main-button">
+                                    Explore
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% i++; %>
+                </div>
+            </div>
+        </section>
+        <% } %>
+    </div>
+</section>
+
+<%- include('partials/footer'); -%> 
+
+
