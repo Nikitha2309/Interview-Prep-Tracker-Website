@@ -78,7 +78,7 @@ module.exports.formQuestion_post = (req,res) => {
     catch(err)
     {
        const errors=handleErrorsQuestion(err);
-       console.log(err);
+       console.log("shit ..error               ",err);
        res.status(400).json({errors});
     }
 }
