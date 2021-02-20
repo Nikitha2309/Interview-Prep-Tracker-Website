@@ -1,0 +1,80 @@
+<%- include('partials/header'); -%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<link rel="stylesheet" href="/style_question.css">
+<div class="bg-modal">
+    <div class="modal-content">
+        <div class="close" id="close">
+          <a href="/">  + </a> 
+        </div>
+        <form action="">
+            <h3>CONTRIBUTE QUESTIONS </h3><br>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="Name" required>
+                <div class="name error"></div>
+
+                <label for="link">Link to the Question</label>
+                <input type="text" name="link" required>
+                <div class="link error"></div>
+            
+                <label for="topics">Topics</label><br>
+                <select name='topic' required>
+                <% topics.forEach(function(topic) { %>
+                    <option value=<%- topic.name %>><%- topic.name %></option>
+                <% }); %>
+                </select>
+                <div class="topic error"></div>
+            </div>
+            <br>
+            <div>
+                <button type='submit' class=" btn btn-default btn-primary fa" >
+                    <i class="fa fa-paper-plane"></i> Add </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const form = document.querySelector('form');
+    const nameError = document.querySelector('.name.error');
+    const linkError = document.querySelector('.link.error');
+    const topicError = document.querySelector('.topic.error');
+
+    form.addEventListener('submit',async (e)=>{
+        e.preventDefault();
+
+        const name = form.name.value;
+        const link = form.link.value;
+        const topic = form.topic.value;
+        nameError.textContent = '';
+        linkError.textContent = '';
+        topicError.textContent = '';
+        try {
+                const res = await fetch('/formQuestion', {
+                    method: 'POST',
+                    body: JSON.stringify({name,link,topic}),
+                    headers: {'Content-Type':'application/json'}
+                });
+            const data = await res.json();
+            if(data.errors){
+                nameError.textContent = data.errors.name;
+                linkError.textContent = data.errors.link;
+                topicError.textContent = data.errors.topic;
+            }
+            alert('done vro ;) thanks for contribuition :/ ');
+            location.assign('/');
+            
+        } catch (error) {
+            console.log(error);
+        }
+    });
+    
+</script>
+
+<%- include('partials/footer'); -%>
+
+
