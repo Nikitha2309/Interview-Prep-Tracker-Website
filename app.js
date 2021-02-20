@@ -111,8 +111,11 @@ const appsetup = (database) =>{
   const admin = new AdminBro(options);
   const router = buildAdminRouter(admin);
   app.use(admin.options.rootPath, router);
-
-  app.listen(3000);
+   
+  const port = Process.env.PORT || 3000 ;
+  server.listen(port,()=>{  // do not add localhost here if you are deploying it
+    console.log("server listening to port "+port);
+  });
 
   //middleware
   app.use(express.static('public'));
