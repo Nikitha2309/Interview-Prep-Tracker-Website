@@ -9,7 +9,7 @@
         <section class="section" id="about">
             <div class="container">
                 <div class="row">
-                    <% if(i< experiences.length) { %>
+                    <% if(i< experiences.length && experiences[i]['valid']) { %>
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                         <div class="features-item">
@@ -27,7 +27,7 @@
                     </div>
                     <% } %>
                     <% i++; %>
-                    <% if(i< experiences.length) { %>
+                    <% if(i< experiences.length && experiences[i]['valid']) { %>
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
                         <div class="features-item">
@@ -45,7 +45,7 @@
                     </div>
                     <% } %>
                     <% i++; %>
-                    <% if(i< experiences.length) { %>
+                    <% if(i< experiences.length && experiences[i]['valid']) { %>
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
                         <div class="features-item">

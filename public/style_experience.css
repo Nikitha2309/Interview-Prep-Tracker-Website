@@ -1,4 +1,4 @@
-.bg-modal1 {
+.bg-modal2 {
     width:100%;
     height:100%;
     background-color: rgba(0,0,0,0);
@@ -11,7 +11,7 @@
 
 .modal-content{
     width: 500px;
-    height: 400px;
+    height: 600px;
     background-color: white;
     border-radius: 5px;
     text-align: center;
@@ -24,7 +24,7 @@ input{
     margin: 15px auto;
 
 }
-.close1{
+.close2{
     position: absolute;
     top:0;
     right: 14px;

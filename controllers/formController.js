@@ -38,7 +38,7 @@ const handleErrorsExperience=(err)=>{
 
     //1.duplicate error code
      if(err.code == 11000){
-        rrors.name= 'experience with this title already exists';
+        errors.name= 'experience with this title already exists';
         return errors;
     }
 
@@ -102,7 +102,8 @@ module.exports.formExperience_post = (req,res) => {
            valid=false;
            console.log("user added experience");
        }
-       const question= Question.create({name,title,image,company,description,valid});
+       const experience= Experience.create({name,title,image,company,description,valid});
+       console.log("done vro u go gall",experience);
        alert('some alert');
        res.redirect('/some page');
    }

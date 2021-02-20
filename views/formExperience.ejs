@@ -5,90 +5,55 @@
 <br>
 <br>
 
-<link rel="stylesheet" href="/style_formQuestion.css">
-    <div class="panda">
-        <div class="ear"></div>
-        <div class="face">
-          <div class="eye-shade"></div>
-          <div class="eye-white">
-            <div class="eye-ball"></div>
-          </div>
-          <div class="eye-shade rgt"></div>
-          <div class="eye-white rgt">
-            <div class="eye-ball"></div>
-          </div>
-          <div class="nose"></div>
-          <div class="mouth"></div>
+<link rel="stylesheet" href="/style_experience.css">
+<div class="bg-modal2">
+    <div class="modal-content">
+        <div class="close2" id="close2">
+          <a href="/">  + </a> 
         </div>
-        <div class="body"> </div>
-      </div>
+        <form action="">
+            <h3>CONTRIBUTE EXPERIENCE </h3><br>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" required>
+                <div class="name error"></div>
 
-      <form action="/formExperience">
-        <div class="hand"></div>
-        <div class="hand rgt"></div>
-        <h1 style="color: #ff4081;
-        font-weight: bolder;
-        font-size: 30px;
-        font-family: 'Dancing Script', cursive;">Panda Experience</h1>
+                <label for="title">Title</label>
+                <input type="text" name="title" required>
+                <div class="title error"></div>
 
-        <div class="form-group">
-          <input type='text' name='name' required="required" class="form-control"/>
-          <label class="form-label">Name    </label>
-          <div class="name error"></div>
-        </div>
-
-        <div class="form-group">
-            <input type='text' name='title' required="required" class="form-control"/>
-            <label class="form-label">Title  </label>
-            <div class="title error"></div>
-        </div>
-
-        <div class="form-group">
-            <input type="text" name="image"  required="required" class="form-control">
-            <label class="form-label">Image  </label>
-            <div class="image error"></div>
-        </div>
-
-        <div class="form-group">
-          
-            <select name='company'  required="required" class="form-control">
-                <option value='hello'>hello</option>
+                <label for="image">Image</label>
+                <input type="text" name="image" required>
+                <div class="image error"></div>
+            
+                <label for="company">Company</label><br>
+                <select name='company' required>
                 <% companys.forEach(function(company) { %>
                     <option value=<%- company._id %>><%- company.name %></option>
                 <% }); %>
-                <option value='hello'>hell</option>
-            </select>
-         <div class="company error"></div>
-        </div>
+                </select>
+                <div class="company error"></div>
 
-        <div class="form-group">
-            <input type='text' name='description' required="required" class="form-control"/>
-            <label class="form-label">Description </label>
-            <div class="description error"></div>
-          </div>
+                <label for="description">Description</label>
+                <input type="text" name="description" required>
+                <div class="description error"></div>
+            </div>
+            <br>
+            <div>
+                <button type='submit' class=" btn btn-default btn-primary fa" >
+                    <i class="fa fa-paper-plane"></i> Add </button>
+            </div>
+        </form>
+    </div>
+</div> 
 
-        <div class="form-group">
-
-          <button type='submit' class=" btn-default btn-primary fa" style="
-          background: #fff;
-          padding: 5px;
-          width: 150px;
-          height: 35px;
-          border: 1px solid #ff4081;
-          margin-top: 25px;
-          cursor: pointer;
-          transition: 0.3s;
-          box-shadow: 0 50px #ff4081 inset;
-          color: #fff;
-          "><i class="fa fa-paper-plane"></i> Add </button>
-
-        </div>
-      </form>
+        
    
       <script >
         const form = document.querySelector('form');
         const nameError = document.querySelector('.name.error');
         const titleError = document.querySelector('.title.error');
+        const imageError = document.querySelector('.image.error');
         const companyError = document.querySelector('.company.error');
         const descriptionError = document.querySelector('.description.error');
         form.addEventListener('submit' , async (e) =>{
@@ -106,7 +71,7 @@
             try {
                     const res = await fetch('/formExperience', {
                         method: 'POST',
-                        body: JSON.stringify({name,title,company,description}),
+                        body: JSON.stringify({name,title,image,company,description}),
                         headers: {'Content-Type':'application/json'}
                     });
                 const data = await res.json();
