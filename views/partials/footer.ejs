@@ -1,5 +1,7 @@
-
 <!-- ***** Footer Start ***** -->
+<br>
+<br>
+<br>
 <footer id="contact-us">
     <div class="container">
         <div class="footer-content">
@@ -48,6 +50,15 @@
 
 <!-- Global Init -->
 <script src="/custom.js"></script>
+<script>
+    document.getElementById('Contributebutton').addEventListener('click',function(){
+        document.querySelector('.bg-modal').style.display = 'flex';  
+    });
+    document.querySelector('.close').addEventListener('click', function(){
+        document.querySelector('.bg-modal').style.display = 'none'; 
+        
+    });
+</script>
 
 </body>
 </html>
