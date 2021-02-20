@@ -8,14 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Interview Tracker</title>
 <!--
-
 Lava Landing Page
-
 https://templatemo.com/tm-540-lava-landing-page
-
 -->
 
     <!-- Additional CSS Files -->
@@ -29,7 +31,7 @@ https://templatemo.com/tm-540-lava-landing-page
 </head>
 
 <body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -55,14 +57,14 @@ https://templatemo.com/tm-540-lava-landing-page
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             
-                            <li class="scroll-to-section"><a href="#promotion" class="menu-item">PRACTISE</a></li>
-                            <li class="scroll-to-section"><a href="#promotion" class="menu-item">INTERVIEW EXPERIENCE</a>
+                            <li class="scroll-to-section"><a href="/topics" class="menu-item">PRACTISE</a></li>
+                            <li class="scroll-to-section"><a href="/companys" class="menu-item">INTERVIEW EXPERIENCE</a>
                             </li>
                             <li class="dropdown scroll-to-section">
                                 <a class=" dropdown-toggle" href="#"  role="button" data-toggle="dropdown"> Contribute </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="#">Question</a>
-                                  <a class="dropdown-item" href="#">Experience </a>
+                                  <button style="border: white;background-color: white;"><a class="dropdown-item" id="Contributebutton" href="/formQuestion">Question</a></button>
+                                  <a class="dropdown-item" href="/formExperience">Experience </a>
                                 </div>
                               </li>
                               <% if(user){ %>
