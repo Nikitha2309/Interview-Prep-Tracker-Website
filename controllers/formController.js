@@ -1,7 +1,10 @@
 const Question = require("../models/Question");
 const app=require('../app');
+const {checkAdmin} = require('../middleware/authMiddleware');
+const Experience = require("../models/Experience");
 
-const handleErrors=(err)=>{
+
+const handleErrorsQuestion=(err)=>{
     console.log(err.message,err.code);
 
     //error messages
@@ -28,18 +31,61 @@ const handleErrors=(err)=>{
 
 }
 
+const handleErrorsExperience=(err)=>{
+    console.log(err.message,err.code);
+
+    //error messages
+     let errors={name:'',title:'',image:'',company:'',description:''};
+
+    //1.duplicate error code
+     if(err.code == 11000){
+        rrors.name= 'experience with this title already exists';
+        return errors;
+    }
+
+    //invalid question 
+    if (err.message.includes('Experience validation failed')){
+        Object.values(err.errors).forEach(({properties})=>{
+          errors[properties.path]=properties.message;
+        });
+    }
+    return errors;
+
+}
+
 module.exports.formQuestion_get =(req,res) => {
      res.render('formQuestion',{ topics : app.topics});    
 }
-
 module.exports.formQuestion_post = (req,res) => {
     const {name,link,topic}=req.body;
     try
     {
-        const valid=false;
-        const question= Question.create({name,link,topic,valid});
-        alert('some alert');
-        res.redirect('/some page');
+        let valid;
+        if(checkAdmin)
+        {
+            valid=true;
+            console.log("admin added ques");
+        }
+        else
+        {
+            valid=false;
+            console.log("user added ques");
+        }
+        const question = new Question({
+            name,
+            link,
+            topic,
+            valid
+        });
+        question.save((err,question)=>{
+            if(err){
+                return res.status(400).json({
+                    error:"not able to save the question"
+                });
+            }
+            return res.json(question);
+        });
+        //res.redirect('home');
     }
     catch(err)
     {
@@ -49,3 +95,33 @@ module.exports.formQuestion_post = (req,res) => {
     }
 }
 
+module.exports.formExperience_get =(req,res) => {
+    res.render('formExperience',{ companys : app.companys});    
+}
+
+module.exports.formExperience_post = (req,res) => {
+   const {name,title,image,company,description}=req.body;
+   try
+   {
+       let valid;
+       if(checkAdmin)
+       {
+           valid=true;
+           console.log("admin added experience");
+       }
+       else
+       {
+           valid=false;
+           console.log("user added experience");
+       }
+       const question= Question.create({name,title,image,company,description,valid});
+       alert('some alert');
+       res.redirect('/some page');
+   }
+   catch(err)
+   {
+      const errors=handleErrorsExperience(err);
+      console.log(err);
+      res.status(400).json({errors});
+   }
+}
