@@ -113,7 +113,7 @@ const appsetup = (database) =>{
   app.use(admin.options.rootPath, router);
    
   const port = Process.env.PORT || 3000 ;
-  server.listen(port,()=>{  // do not add localhost here if you are deploying it
+  app.listen(port,()=>{  // do not add localhost here if you are deploying it
     console.log("server listening to port "+port);
   });
 
