@@ -31,7 +31,7 @@ const handleErrors=(err)=>{
 }
 
 module.exports.formQuestion_get =(req,res) => {
-     res.render('formQuestion',{ topics : app.topics});    
+     res.render('addQuestion',{ topics : app.topics});    
 }
 module.exports.formQuestion_post = (req,res) => {
     const {name,link,topic}=req.body;
@@ -71,4 +71,5 @@ module.exports.formQuestion_post = (req,res) => {
        res.status(400).json({errors});
     }
 }
+
 
