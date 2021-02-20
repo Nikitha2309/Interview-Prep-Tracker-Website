@@ -28,5 +28,8 @@
     "multer-gridfs-storage": "^4.2.0",
     "nodemon": "^2.0.6",
     "validator": "^13.5.2"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
