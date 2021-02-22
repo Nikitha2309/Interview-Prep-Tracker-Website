@@ -57,9 +57,11 @@ A particular company's page contains all experiences related to that company
 A user can contribute as well .
 
 * Adding Questions
+
 ![](/website/questionform.png) 
 
 * Adding Experience
+
 ![](/website/experienceform.png)
 
 A user added question or experience needs admin approval to be displayed in the website . If a admin adds it gets saved and displayed by default.
