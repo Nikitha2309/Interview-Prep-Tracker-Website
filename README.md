@@ -1,12 +1,12 @@
 # Interview Tracker Website 
 
-For more Info refer - https://youtu.be/DFSUiORaEbA
+Project Demonstration - https://youtu.be/DFSUiORaEbA
 
 ## About The Website
 
 A web application made using Node.js framework to ease the process of interivew preperation by gathering all resources at a single place i.e several practice questions and interview experiences.
 
-### Environement Setup :
+### Environment Setup :
 
 * Install node.js
 * Set up and connect to mongo server
@@ -24,11 +24,11 @@ A web application made using Node.js framework to ease the process of interivew 
 ### Home Page
 
 The home page contains navbar , body and footer .
-Before authentication it shows two options signup and login .
+*Before authentication it shows two options signup and login .
 
 ![](/website/bfauth.png)
 
-After login it displays user's username and gives access to all other parts of the website
+*After login it displays user's username and gives access to all other parts of the website
 
 ![](/website/afauth.png)
 
@@ -36,11 +36,11 @@ After login it displays user's username and gives access to all other parts of t
 ### Practice Section
 
 A user can practice many questions topic wise . 
-Topics page contains several topics
+*Topics page contains several topics
 
 ![](/website/topics.png)
 
-A particular topic's page contains all questions related to that topic
+*A particular topic's page contains all questions related to that topic
 
 ![](/website/questions.png)
 
@@ -66,11 +66,11 @@ A user added question or experience needs admin approval to be displayed in the 
 
 ## Admin Panel
 
-Authenticated admin panel 
+*Authenticated admin panel 
 
 ![](/website/adminauth.png)
 
-Admins can add , delete modify models data and also approve questions or experiences added by users .
+*Admins can add , delete modify models data and also approve questions or experiences added by users .
 
 ![](/website/adminpanel.png)
 
