@@ -6,7 +6,7 @@
 
 A web application made using Node.js framework to ease the process of interivew preperation by gathering all resources at a single place i.e several practice questions and interview experiences.
 
-### Environment Setup :
+### Environment Setup 
 
 * Install node.js
 * Set up and connect to mongo server
